@@ -1,6 +1,5 @@
 import Link from "next/link";
 import styles from "@/styles/navbar.module.css"
-import { useSession } from "next-auth";
 
 export default function Navbar({ links }){
     return(

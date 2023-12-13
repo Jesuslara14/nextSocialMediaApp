@@ -1,0 +1,13 @@
+.authPage{
+    padding: 25px;
+}
+
+.formWrapper{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    background-color: gray;
+    border: 2px solid rgb(41, 41, 41);
+    width: fit-content;
+    height: fit-content;
+}

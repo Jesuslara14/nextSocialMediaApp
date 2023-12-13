@@ -17,13 +17,11 @@ export default function UserPanel() {
     if(status === "unauthenticated"){
         return(
             <p className={styles.mustSignIn}>
-                It's bout time you 
-                <Link href={'profile/signup'} className={styles.underline}>
-                    create an account
+                It's bout time you <Link href={'/profile/signup'} className={styles.underline}>
+                    create an account 
                 </Link>. 
-                Or if you already have one, make sure to 
-                <Link href={'profile/login'} className={styles.underline}>
-                    sign in!
+                Or if you already have one, make sure to <Link href={'/profile/login'} className={styles.underline}>
+                     sign in!
                 </Link>
             </p>
         )

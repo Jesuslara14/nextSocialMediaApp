@@ -1,15 +1,20 @@
 "use client"
 import styles from '@/styles/feed.module.css'
+import { useSession } from 'next-auth/react'
 
 export default function Feed() {
+    const { status } = useSession()
+
+    if (status === "loading"){
+        return(
+            <div className={styles.feed}>
+                Loading...
+            </div>
+        )
+    }
+
     return(
         <div className={styles.feed}>
-            <h1>Welcome!</h1>
-            <form>
-                <h3>Search for specific tags</h3>
-                <hr />
-                <input type="text" name='searchTerm'/> 🔍
-            </form>
         </div>
     )
 }

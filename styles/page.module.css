@@ -1,5 +1,18 @@
 .main {
+  padding: 15px;
   display: inherit;
   flex-direction: inherit;
   min-height: 100vh;
+}
+
+.searchFeed{
+  background-color: transparent;
+  border: none;
+}
+
+.homeContent{
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
 }
