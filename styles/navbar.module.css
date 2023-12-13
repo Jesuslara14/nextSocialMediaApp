@@ -1,5 +1,5 @@
 .nav{
-    height: 125px;
+    height: 20vh;
     width: 100%;
     position: fixed;
     top: 0px;
@@ -10,35 +10,32 @@
 .navContent{
     height: 70%;
 }
-  
+
+.navTitleWrapper{
+    margin: 0px 300px 0px 300px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, darkRed);
+}
+
 .navLinks{
+    padding: 0px 300px 0px 300px;
     height: 30%;
     display: flex;
     align-items: center;
     text-align: center;
-    background-color: rgb(0, 195, 19);
-}
-
-.rightNavLinks{
-    display: inherit;
-    align-items: inherit;
-}
-
-.leftNavLinks{
-    display: inherit;
-    align-items: inherit;
-    margin-left: auto;
+    background-color: rgb(41, 41, 41);
+    border: 2px solid rgb(33, 199, 0);
 }
   
 .navLinks a:link {
-    color: white;
+    color: rgb(33, 199, 0);
     margin: 5px;
     background-color: transparent;
     text-decoration: underline;
 }
   
 .navLinks a:visited {
-    color: white;
+    color: rgb(33, 199, 0);
     background-color: transparent;
     text-decoration: underline;
 }

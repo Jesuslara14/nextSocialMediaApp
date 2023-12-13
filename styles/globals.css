@@ -5,6 +5,30 @@
   margin: 0;
 }
 
+.main{
+  display: flex;
+  gap: 5%;
+  min-height: 73vh;
+  margin-top: 27vh;
+  padding: 0px 185px 0px 185px
+}
+
+.renderedPage{
+  background-color: gainsboro;
+  width: 70%;
+}
+
+.userPanelWrapper{
+  display: flex;
+  background-color: black;
+  border: 3px solid rgb(33, 199, 0);
+  padding: 10px;
+  margin-top: 80px;
+  width: 25%;
+  height: 55vh;
+  color: white;
+}
+
 html,
 body {
   max-width: 100vw;
@@ -26,8 +50,3 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
