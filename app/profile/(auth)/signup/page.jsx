@@ -1,11 +1,51 @@
+"use client"
+import { POST } from '@/app/api/auth/register/route'
 import styles from '@/styles/authentication.module.css'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 export default function Signup(){
+    const [error, setError] = useState(null);
+    const router = useRouter();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const username = e.target[0].value
+        const email = e.target[1].value
+        const password = e.target[2].value
+        const confirmPassword = e.target[3].value
+
+        if(password != confirmPassword){
+            return(setError('Passwords do not match!'));
+        }
+
+        try{
+            const res = await fetch('/api/auth/register', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username,
+                    email,
+                    password
+                })
+            })
+
+            res.status == 200 && router.push('/profile/login');
+        }catch(err){
+            setError(err);
+            console.log(err);
+        }
+    }
+
     return(
         <div className={styles.authPage}>
-            <form className={styles.formWrapper}>
-                <h3>Sign Up</h3>
+            <h3>Sign Up</h3>
+            {error && error}
+            <form className={styles.formWrapper} onSubmit={handleSubmit}>
                 <input type="text" name='username' id='username' placeholder='Username'/> <br />
                 <input type="email" name='email' id='email' placeholder='Email'/> <br />
                 <input type="password" name='password' id='password' placeholder='Password'/> <br />

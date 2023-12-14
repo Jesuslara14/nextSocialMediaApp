@@ -4,8 +4,8 @@ import Link from 'next/link'
 export default function Login(){
     return(
         <div className={styles.authPage}>
+            <h3>Log in</h3>
             <form className={styles.formWrapper}>
-                <h3>Log in</h3>
                 <input type="email" name='email' id='email' placeholder='Email'/> <br />
                 <input type="password" name='password' id='password' placeholder='Password'/> <br />
                 <button type='submit'>Login</button>
