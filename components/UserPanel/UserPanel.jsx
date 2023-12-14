@@ -1,6 +1,7 @@
 "use client"
 import styles from '@/styles/userpanel.module.css'
 import { useSession } from 'next-auth/react'
+import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 
 export default function UserPanel() {
@@ -29,7 +30,11 @@ export default function UserPanel() {
 
     if(status === "authenticated"){
         return(
-            <Link href={'/profile'} className={styles.underline}>Profile Page</Link>
+            <div>
+                <Link href={'/profile'} className={styles.underline}>Profile Page</Link>
+                <button onClick={signOut}>Sign Out</button>
+            </div>
+            
         )
     }
 }

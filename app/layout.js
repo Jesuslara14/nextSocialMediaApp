@@ -23,6 +23,7 @@ export default function RootLayout({ children }) {
           links = {[
             {link: '/', name: 'Home', key: 0},
             {link: '/chat', name: 'Chat', key: 1},
+            {link: '/profile', name: 'Profile', key: 2}
           ]}
           />
           <div className='main'>

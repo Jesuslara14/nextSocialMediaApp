@@ -1,5 +1,4 @@
 "use client"
-import { POST } from '@/app/api/auth/register/route'
 import styles from '@/styles/authentication.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
