@@ -2,11 +2,17 @@
 import styles from '@/styles/authentication.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 import { useState } from 'react'
 
 export default function Signup(){
+    const { status } = useSession();
     const [error, setError] = useState(null);
     const router = useRouter();
+
+    if(status == 'authenticated'){
+        router.push('/profile');
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();

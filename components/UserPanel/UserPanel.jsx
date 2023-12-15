@@ -3,9 +3,10 @@ import styles from '@/styles/userpanel.module.css'
 import { useSession } from 'next-auth/react'
 import { signOut } from 'next-auth/react';
 import Link from 'next/link';
+import Notifications from './Notifications/Notifications';
 
 export default function UserPanel() {
-    const { status } = useSession();
+    const { data: session, status } = useSession();
 
     if(status === "loading"){
         return(
@@ -30,11 +31,11 @@ export default function UserPanel() {
 
     if(status === "authenticated"){
         return(
-            <div>
-                <Link href={'/profile'} className={styles.underline}>Profile Page</Link>
-                <button onClick={signOut}>Sign Out</button>
+            <div className={styles.userPanel}>
+                <h3>Welcome, <br /><Link href={'/profile'} className={styles.underline}>{session.user.email}</Link></h3>
+                <Notifications />
+                <button onClick={signOut} className={styles.signOut}>Sign Out</button>
             </div>
-            
         )
     }
 }

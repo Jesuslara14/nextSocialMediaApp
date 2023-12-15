@@ -1,0 +1,24 @@
+.profileWrapper{
+    padding: 25px;
+}
+
+.userCard{
+    padding: 5px;
+    width: auto;
+    height: fit-content;
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+}
+
+.avatar{
+    border-radius: 100px;
+}
+
+.wordInfo{
+    width: stretch;
+}
+
+.bio{
+    height: 120px;
+}

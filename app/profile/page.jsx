@@ -1,12 +1,12 @@
 "use client"
+import styles from '@/styles/profile.module.css'
 import { useSession } from "next-auth/react"
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"
+import UserCard from '@/components/UserCard/UserCard'
 
 export default function Profile(){
     const { data: session, status } = useSession();
     const router = useRouter()
-
-    console.log(session)
 
     if (status === "loading"){
         return(
@@ -26,11 +26,13 @@ export default function Profile(){
     }
 
     return(
-        <>
-            {
-                session.user.email
-            }
-        </>
-        
+        <div className={styles.profileWrapper}>
+            <UserCard
+                username={'John Doe'}
+                bio={'HELL O'}
+                avatar={null}
+            />
+            <hr />
+        </div>
     )
 }
