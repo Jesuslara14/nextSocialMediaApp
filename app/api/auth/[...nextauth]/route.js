@@ -18,22 +18,24 @@ const handler = NextAuth({
                     const passwordIsCorrect = await bcrypt.compare(credentials.password, user.password);
 
                     if (passwordIsCorrect){
-                        return Promise.resolve(user);
+                        return user;
                     } else {
-                        return Promise.resolve(null);
+                        return { error: 'Wrong password'};
                     }
                 } else {
-                    return null;
+                    return {error: 'User does not exist'};
                 }
             }
         })
     ],
     callbacks: {
-        async session(session, user){
-            console.log(user)
-
-            return session;
-        }
+        async signIn({ user, account, profile, email, credentials}){
+            if(!user.error){
+                return true;
+            } else {
+                throw new Error(user.error);
+            }
+        } 
     },
     database: process.env.MONGO_URL
 })
