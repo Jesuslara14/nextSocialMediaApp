@@ -26,23 +26,22 @@ export default function Signup(){
             return(setError('Passwords do not match!'));
         }
 
-        try{
-            const res = await fetch('/api/auth/register', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    username,
-                    email,
-                    password
-                })
+        const res = await fetch('/api/auth/register', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username,
+                email,
+                password
             })
+        })
 
-            res.status == 200 && router.push('/profile/login');
-        }catch(err){
-            setError(err);
-            console.log(err);
+        if(res.status == 200){
+            router.push('/profile/login');
+        } else {
+            setError('Internal server error');
         }
     }
 

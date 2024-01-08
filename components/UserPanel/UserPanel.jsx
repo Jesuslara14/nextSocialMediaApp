@@ -32,7 +32,7 @@ export default function UserPanel() {
     if(status === "authenticated"){
         return(
             <div className={styles.userPanel}>
-                <h3>Welcome, <br /><Link href={'/profile'} className={styles.underline}>{session.user.email}</Link></h3>
+                <h3>Welcome, <br /><Link href={'/profile'} className={styles.underline}>{session.user.username}</Link></h3>
                 <Notifications />
                 <button onClick={signOut} className={styles.signOut}>Sign Out</button>
             </div>

@@ -11,6 +11,10 @@
     flex-direction: row;
 }
 
+.textBox{
+    width: 300px;
+}
+
 .avatar{
     border-radius: 100px;
 }

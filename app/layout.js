@@ -1,6 +1,6 @@
 import { Inter } from 'next/font/google'
 import Navbar from '@/components/Navbar/Navbar'
-import connect from '@/utils/db'
+import connect from '@/utils/mongo'
 import UserPanel from '@/components/UserPanel/UserPanel'
 import AuthProvider from './AuthProvider/AuthProvider'
 import '../styles/globals.css'
@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <AuthProvider>
-        <body className={inter.className}>
+        <body className={inter.className} id='body'>
           <Navbar 
           links = {[
             {link: '/', name: 'Home', key: 0},

@@ -3,3 +3,26 @@
     width: 65%;
     height: fit-content;
 }
+
+.posts{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    padding: 20px;
+}
+
+.post{
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+    height: auto;
+    background-color: rgb(218, 218, 218);
+}
+
+.video{
+    width: 100%;
+}
+
+.feedPages{
+    text-align: center;
+}

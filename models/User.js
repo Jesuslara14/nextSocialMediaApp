@@ -7,6 +7,9 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    bio: {
+        type: String,
+    },
     email: {
         type: String,
         required: true,
@@ -22,7 +25,15 @@ const userSchema = new Schema({
     friends: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }]
+    }],
+    following: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    followers: {
+        type: Number,
+        required: true
+    }
 },
 {timestamps: true}
 )

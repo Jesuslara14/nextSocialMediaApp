@@ -1,9 +1,15 @@
-import Image from 'next/image'
+"use client"
 import Feed from '@/components/Feed/Feed'
 import HomeAside from '@/components/HomeAside/HomeAside'
 import styles from '../styles/page.module.css'
+import { useState } from 'react'
 
 export default function Home() {
+  const [searchFormData, setSearchFormData] = useState({
+    search: false,
+    term: null
+  });
+
   return (
     <main className={styles.main}>
       <div className={styles.feed}>
@@ -15,7 +21,11 @@ export default function Home() {
         </form>
       </div>
       <div className={styles.homeContent}>
-        <Feed />
+        <Feed 
+          search={searchFormData.search}
+          type={'keyword'}
+          term={searchFormData.term}
+        />
         <HomeAside />
       </div>
     </main>

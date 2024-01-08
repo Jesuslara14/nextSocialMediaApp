@@ -11,12 +11,15 @@
   "dependencies": {
     "aws4": "^1.12.0",
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.41.1",
+    "cors": "^2.8.5",
     "mongodb": "^6.3.0",
     "mongoose": "^8.0.3",
     "next": "14.0.3",
     "next-auth": "^4.24.5",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-modal": "^3.16.1"
   },
   "devDependencies": {
     "eslint": "^8",

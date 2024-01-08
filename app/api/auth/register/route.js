@@ -1,4 +1,4 @@
-import connect from "@/utils/db"
+import connect from "@/utils/mongo"
 import User from "@/models/User"
 import bcrypt from 'bcryptjs'
 import { NextResponse } from "next/server"
@@ -10,7 +10,8 @@ export async function POST (request){
     const newUser = new User({
         username: username,
         email: email,
-        password: hashedPassword
+        password: hashedPassword,
+        followers: 0
     })
 
     try{
