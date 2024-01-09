@@ -7,10 +7,9 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
 export default function User({params}) {
-    const {data: session, status} = useSession();
+    const {data: session, status, update} = useSession();
     const router = useRouter();
     const [userData, setUserData] = useState({});
-    const [isFollowed, setIsFollowed] = useState(null);
 
     if(status == 'authenticated' && session.user.id == params.id){
         router.push('/profile')
@@ -25,6 +24,35 @@ export default function User({params}) {
             setUserData(data.body)
         })
     }, []);
+
+    const handleFollow = () => {
+        if(!session){
+            return router.push('/profile/login')
+        } else {
+            if(session.user.following.includes(params.id)){
+                const following = session.user.following.splice(session.user.following.indexOf(params.id), 1);
+                update({
+                    following: following
+                });
+            } else {
+                const following = session.user.following.push(params.id);
+                update({
+                    following: following
+                })
+            }
+            fetch(`/api/users/follow?user=${session.user.id}&target=${params.id}`, {
+                method: 'PUT'
+            });
+        }
+    }
+
+    const getFollowButtonName = () => {
+        if(session?.user?.following.includes(params.id)){
+            return 'Unfollow'
+        } else {
+            return 'Follow'
+        }
+    }
     
     return(
         <div className={styles.profileWrapper}>
@@ -34,7 +62,7 @@ export default function User({params}) {
                 avatar={userData.avatar}
                 followers={userData.followers}
             />
-            <button>Follow</button>
+            <button onClick={handleFollow}>{getFollowButtonName()}</button>
             <hr />
             <Feed 
                 search={true}

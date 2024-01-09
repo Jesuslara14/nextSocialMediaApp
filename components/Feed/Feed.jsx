@@ -1,40 +1,42 @@
 "use client"
 import styles from '@/styles/feed.module.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useSession } from 'next-auth/react'
 import Post from './Post/Post'
 
 export default function Feed({search, type, term}) {
     const { status } = useSession();
+    const isSet = useRef(false);
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
     const [loadedPosts, setLoadedPosts] = useState([]);
-    const [apiUrl, setApiUrl] = useState('/api/posts/fetch')
+    const [apiUrl, setApiUrl] = useState(null)
 
     const fetchPosts = async () => {
-        let res = await fetch(apiUrl, {
-            method: 'GET',
-        })
-    
-        res = await res.json();
-
-        console.log(res.body)
-
-        setLoadedPosts(res.body);
-        setTotalPages(Math.floor(res.body.length/10))
+        if(apiUrl != null){
+            let res = await fetch(apiUrl, {
+                method: 'GET',
+            })
+            res = await res.json();
+            setLoadedPosts(res.body);
+            setTotalPages(Math.floor(res.body.length/10))
+        }
     }
 
     useEffect(() => {
-        fetchPosts();
+        if(isSet.current){
+            fetchPosts();
+        }
     }, [apiUrl]);
 
     useEffect(() => {
         if(search){
-            const newApiUrl = `${apiUrl}?${type}=${term}`;
+            const newApiUrl = `/api/posts/fetch?${type}=${term}`;
             setApiUrl(newApiUrl);
         } else {
-            setApiUrl(prevData => prevData);
+            setApiUrl('/api/posts/fetch');
         }
+        isSet.current = true;
     }, []);
 
     if (status === "loading"){
@@ -47,7 +49,7 @@ export default function Feed({search, type, term}) {
 
     return(
         <div className={styles.feed}>
-            <button>Refresh Feed</button>
+            <button onClick={fetchPosts}>Refresh Feed</button>
             <div className={styles.posts}>
                 {loadedPosts.map((post, index) => (
                     <Post 

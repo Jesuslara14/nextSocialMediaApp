@@ -53,9 +53,11 @@ const handler = NextAuth({
             if(trigger == 'update'){
                 return {
                     ...token,
-                    username: session.username,
-                    bio: session.bio,
-                    avatar: session.avatar
+                    username: session.username || token.username,
+                    bio: session.bio || token.bio,
+                    avatar: session.avatar || token.avatar,
+                    following: session.following || token.following,
+                    followers: session.followers || token.followers
                 }
             }
             return token;

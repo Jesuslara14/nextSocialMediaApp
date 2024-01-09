@@ -14,7 +14,7 @@ export default function Post({authorName, author, caption, media, mediaType, lik
             {mediaType == 'v' && <video src={media} className={styles.video} controls></video>}
             <p className={styles.postCaption}>{caption}</p>
             <button>{likes} Likes</button>
-            {session.user.id == author && <button>Delete post</button>}
+            {session?.user?.id == author && <button>Delete post</button>}
         </div>
     )
 }

@@ -184,7 +184,11 @@ export default function Profile(){
                     <button type='submit'>Update</button>
                 </form>
             </ReactModal>
-            <Feed />
+            <Feed 
+                search={true}
+                type={'user'}
+                term={session.user.id}
+            />
         </div>
     )
 }
