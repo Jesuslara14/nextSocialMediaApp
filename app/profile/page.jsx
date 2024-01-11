@@ -6,7 +6,7 @@ import { useState } from 'react'
 import ReactModal from 'react-modal'
 import UserCard from '@/components/UserCard/UserCard'
 import Feed from '@/components/Feed/Feed'
-import uploadToCloudinary from './upload'
+import uploadToCloudinary from './uploadToCloudinary'
 
 ReactModal.setAppElement('#body');
 

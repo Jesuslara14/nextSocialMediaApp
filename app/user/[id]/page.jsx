@@ -8,20 +8,26 @@ import { useRouter } from 'next/navigation'
 
 export default function User({params}) {
     const {data: session, status, update} = useSession();
+    const followingList = session?.user?.following;
     const router = useRouter();
+    const [isFollowing, setIsFollowing] = useState(false)
     const [userData, setUserData] = useState({});
 
-    if(status == 'authenticated' && session.user.id == params.id){
-        router.push('/profile')
+    if(status == 'authenticated' && session?.user?.id == params.id){
+        router.push('/profile');
     }
+
+    useEffect(() => {
+        setIsFollowing(followingList.includes(params.id));
+    }, [followingList, params.id])
 
     useEffect(() => {
         fetch('/api/users/fetch/' + params.id, {
             method: 'GET',
         }).then(res => {
-            return res.json()
+            return res.json();
         }).then(data => {
-            setUserData(data.body)
+            setUserData(data.body);
         })
     }, []);
 
@@ -29,8 +35,9 @@ export default function User({params}) {
         if(!session){
             return router.push('/profile/login')
         } else {
-            if(session.user.following.includes(params.id)){
-                const following = session.user.following.splice(session.user.following.indexOf(params.id), 1);
+            if(isFollowing){
+                const updatedFollowing = session.user.following.splice(session.user.following.indexOf(params.id), 1);
+                debugger
                 update({
                     following: following
                 });
@@ -45,14 +52,6 @@ export default function User({params}) {
             });
         }
     }
-
-    const getFollowButtonName = () => {
-        if(session?.user?.following.includes(params.id)){
-            return 'Unfollow'
-        } else {
-            return 'Follow'
-        }
-    }
     
     return(
         <div className={styles.profileWrapper}>
@@ -62,7 +61,7 @@ export default function User({params}) {
                 avatar={userData.avatar}
                 followers={userData.followers}
             />
-            <button onClick={handleFollow}>{getFollowButtonName()}</button>
+            <button onClick={handleFollow}>Follow</button>
             <hr />
             <Feed 
                 search={true}
