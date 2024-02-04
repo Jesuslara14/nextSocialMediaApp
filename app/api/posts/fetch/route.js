@@ -4,6 +4,8 @@ import { parse } from 'url';
 
 export async function GET(request) {
   const { query } = parse(request.url, true);
+
+  console.log(request.url)
   
   if(query.user != undefined){
     const posts = await Post.find({ author: query.user });

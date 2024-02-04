@@ -18,10 +18,6 @@ export default function User({params}) {
     }
 
     useEffect(() => {
-        setIsFollowing(followingList.includes(params.id));
-    }, [followingList, params.id])
-
-    useEffect(() => {
         fetch('/api/users/fetch/' + params.id, {
             method: 'GET',
         }).then(res => {
@@ -30,6 +26,11 @@ export default function User({params}) {
             setUserData(data.body);
         })
     }, []);
+    
+    /*
+    useEffect(() => {
+        setIsFollowing(followingList.includes(params.id));
+    }, [followingList, params.id])
 
     const handleFollow = () => {
         if(!session){
@@ -39,7 +40,7 @@ export default function User({params}) {
                 const updatedFollowing = session.user.following.splice(session.user.following.indexOf(params.id), 1);
                 debugger
                 update({
-                    following: following
+                    following: isFollowing
                 });
             } else {
                 const following = session.user.following.push(params.id);
@@ -52,6 +53,7 @@ export default function User({params}) {
             });
         }
     }
+    */
     
     return(
         <div className={styles.profileWrapper}>
@@ -61,7 +63,6 @@ export default function User({params}) {
                 avatar={userData.avatar}
                 followers={userData.followers}
             />
-            <button onClick={handleFollow}>Follow</button>
             <hr />
             <Feed 
                 search={true}

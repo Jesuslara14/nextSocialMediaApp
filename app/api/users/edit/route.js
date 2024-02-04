@@ -15,7 +15,7 @@ export async function POST(request){
                 user.username = username;
                 user.bio = bio;
                 user.avatarurl = avatarUrl;
-                user.save();
+                await user.save();
                 return new NextResponse('User updated successfully', {
                     status: 200
                 })

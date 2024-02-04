@@ -30,6 +30,7 @@ export default function Feed({search, type, term}) {
     }, [apiUrl]);
 
     useEffect(() => {
+        console.log({search, type, term})
         if(search){
             const newApiUrl = `/api/posts/fetch?${type}=${term}`;
             setApiUrl(newApiUrl);
