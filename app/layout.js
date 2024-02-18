@@ -2,7 +2,7 @@ import { Inter } from 'next/font/google'
 import Navbar from '@/components/Navbar/Navbar'
 import connect from '@/utils/mongo'
 import UserPanel from '@/components/UserPanel/UserPanel'
-import AuthProvider from './AuthProvider/AuthProvider'
+import AuthProvider from '@/AuthProvider/AuthProvider'
 import '../styles/globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -19,13 +19,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <AuthProvider>
         <body className={inter.className} id='body'>
-          <Navbar 
-          links = {[
-            {link: '/', name: 'Home', key: 0},
-            {link: '/chat', name: 'Chat', key: 1},
-            {link: '/profile', name: 'Profile', key: 2}
-          ]}
-          />
+          <Navbar />
           <div className='main'>
             <div className='renderedPage'>
               {children} 
